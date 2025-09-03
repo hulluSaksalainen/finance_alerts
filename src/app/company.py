@@ -8,8 +8,7 @@ import json
 import time
 import yfinance as yf
 logger = logging.getLogger("stock-alerts")
-CACHE_FILE = Path("../../json/company_cache.json")
-
+CACHE_FILE = Path("json/company_cache.json")
 # TO DO # Common legal suffixes often found in company names (ADD MORE),
 # which we remove to get a cleaner keyword (e.g., "Apple Inc." -> "Apple").
 LEGAL_SUFFIXES = {
