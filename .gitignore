@@ -8,7 +8,8 @@ __pycache__/
 *.egg-info/
 *.manifest
 *.spec
-
+infos.text
+AUFGABEN.md
 # ---- Virtual environment ----
 .venv/
 venv/
@@ -20,7 +21,7 @@ ENV/
 # ---- Project specific ----
 # Sensitive config
 .env
-alert_state.json
+json/*
 
 # Logs
 *.log
@@ -45,4 +46,4 @@ pytest_cache/
 .pytest_cache/
 htmlcov/
 .cache/
-company_cache.json
+
