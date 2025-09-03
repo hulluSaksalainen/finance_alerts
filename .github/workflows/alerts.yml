@@ -11,6 +11,11 @@ jobs:
 
     steps:
       - name: Write config.json
+        run: |
+          mkdir -p json
+          echo '${{ secrets.CONFIG_JSON }}' > json/config.json
+
+      - name: Write config.json
         run:  echo "${{ secrets.CFG }}" > json/config.json
 
       - name: Checkout Repo
