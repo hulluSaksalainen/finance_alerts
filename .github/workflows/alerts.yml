@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Write config.json
+        run:  echo "${{ secrets.CFG }}" > json/config.json
+
       - name: Checkout Repo
         uses: actions/checkout@v4
 
@@ -30,10 +33,6 @@ jobs:
         run: |
           echo "NTFY_URL=${{ secrets.NTFY_TOPIC }}" >> .env
           echo "API_KEY=${{ secrets.LOG_LEVEL }}" >> .env
-
-      - name: Restore config.json
-        run: |
-          echo '${{ secrets.CFG }}' > json/config.json
 
       - name: Run Alerts
         run: python main.py
