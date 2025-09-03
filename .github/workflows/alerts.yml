@@ -1,0 +1,39 @@
+name: Finance Notifier
+
+on:
+  schedule:
+    - cron: "0,30 * * * *"   # alle 30 Minuten
+  workflow_dispatch:          # manueller Start möglich
+
+jobs:
+  run-alerts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Alerts
+        run: python main.py
+
+      - name: Restore .env
+        run: |
+          echo "NTFY_URL=${{ secrets.NTFY_TOPIC }}" >> .env
+          echo "API_KEY=${{ secrets.LOG_LEVEL }}" >> .env
+
+      - name: Restore config.json
+        run: |
+          echo '${{ secrets.CFG }}' > json/config.json
+
+      - name: Run Alerts
+        run: python main.py
