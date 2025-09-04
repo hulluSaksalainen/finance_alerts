@@ -12,10 +12,11 @@ jobs:
     steps:
       - name: Write config.json
         run: |
-          mkdir -p json
-          printf '%s' "${{ secrets.CFG }}" > json/config.json
+          mkdir -p finance_alerts/json
+          printf '%s' '${{ secrets.CFG }}' > finance_alerts/json/config.json
           echo "config.json created:"
-          cat json/config.json
+          cat finance_alerts/json/config.json
+
 
       - name: Checkout Repo
         uses: actions/checkout@v4
