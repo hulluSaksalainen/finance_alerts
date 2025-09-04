@@ -67,11 +67,13 @@ def load_config(path: str = "json/config.json") -> Dict[str, Any]:
     load_dotenv()  # Load environment variables from .env file if present
     user: Dict[str, Any] = {}
     p = Path(path)
+    print(p,"=p")
     if p.exists():
         try:
             user = json.loads(p.read_text(encoding="utf-8"))
         except Exception as e:
             raise RuntimeError(f"config.json could not be read: {e}") from e
+    print(user,"=user")
     cfg = deep_merge(DEFAULTS,user)
     cfg["log"]["level"] = os.getenv("LOG_LEVEL", cfg["log"]["level"]).upper()
     cfg["ntfy"]["server"] = os.getenv("NTFY_SERVER", cfg["ntfy"]["server"])
