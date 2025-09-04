@@ -68,6 +68,15 @@ def load_config(path: str = "json/config.json") -> Dict[str, Any]:
     user: Dict[str, Any] = {}
     p = Path(path)
     print(p,"=p")
+    print("--------------")
+    
+    # Pfad zum Verzeichnis
+    verzeichnis = Path('.')
+
+    # Dateien und Ordner auflisten
+    for eintrag in verzeichnis.iterdir():
+        print(eintrag.name)
+
     if p.exists():
         try:
             user = json.loads(p.read_text(encoding="utf-8"))

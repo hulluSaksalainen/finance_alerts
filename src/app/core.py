@@ -159,7 +159,7 @@ def is_market_hours(cfg_mh: dict) -> bool:
     # TO DO: Compare current hour with start_hour/end_hour
     start_hour = cfg_mh.get("start_hour", 0)
     end_hour = cfg_mh.get("end_hour", 23)
-    return start_hour <= now.hour < end_hour
+    return int(start_hour) <= int(now.hour) < int(end_hour)
 
 def run_once(
     tickers: List[str],
