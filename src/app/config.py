@@ -73,7 +73,7 @@ def load_config(path: str = "json/config.json") -> Dict[str, Any]:
             user = json.loads(p.read_text(encoding="utf-8"))
         except Exception as e:
             raise RuntimeError(f"config.json could not be read: {e}") from e
-    print(user,"=user")
+    print(user["news"],"=user[news]")
     cfg = deep_merge(DEFAULTS,user)
     cfg["log"]["level"] = os.getenv("LOG_LEVEL", cfg["log"]["level"]).upper()
     cfg["ntfy"]["server"] = os.getenv("NTFY_SERVER", cfg["ntfy"]["server"])
