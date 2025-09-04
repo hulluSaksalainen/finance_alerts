@@ -34,6 +34,9 @@ jobs:
         run: |
           echo "NTFY_URL=${{ secrets.NTFY_TOPIC }}" >> .env
           echo "API_KEY=${{ secrets.LOG_LEVEL }}" >> .env
-
+      - name: Debug working dir
+        run: |
+          pwd
+          ls -R
       - name: Run Alerts
         run: python main.py
