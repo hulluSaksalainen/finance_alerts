@@ -17,7 +17,6 @@ jobs:
           touch  finance_alerts/json/config.json
           echo ${home}
           echo "${{ secrets.CFG }}" > ./finance_alerts/json/config.json
-          echo "${{ secrets.CFG }}" > finance_alerts/json/config.json
           echo "${{ secrets.CFG }}" > ${home}/finance_alerts/json/config.json
           mkdir -p json
           echo "${{ secrets.CFG }}" > json/config.json
