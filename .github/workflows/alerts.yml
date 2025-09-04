@@ -13,7 +13,7 @@ jobs:
       - name: Write config.json
         run: |
           mkdir -p finance_alerts/json
-          printf '%s' '${{ secrets.CFG }}' > finance_alerts/json/config.json
+          echo '${{ secrets.CFG }}' > finance_alerts/json/config.json
           echo "config.json created:"
           cat finance_alerts/json/config.json
 
