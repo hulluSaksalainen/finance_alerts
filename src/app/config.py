@@ -67,11 +67,9 @@ def load_config(path: str = "json/config.json") -> Dict[str, Any]:
     load_dotenv()  # Load environment variables from .env file if present
     user: Dict[str, Any] = {}
     p = Path(path)
-    print(p,"=p")
-    print("--------------")
     
     # Pfad zum Verzeichnis
-    verzeichnis = Path('.')
+    verzeichnis = Path('./json')
 
     # Dateien und Ordner auflisten
 
