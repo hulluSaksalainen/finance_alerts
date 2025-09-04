@@ -15,15 +15,7 @@ jobs:
           mkdir -p finance_alerts/json
           echo "${{ secrets.CFG }}" > finance_alerts/json/config.json
           mkdir -p json
-          echo '${{ secrets.CFG }}' > json/config3.json
-          echo "${{ secrets.CFG }}" > json/config4.json
-          echo "config.json created:"
-          echo "2"
-          cat finance_alerts/json/config.json
-          echo "3"
-          cat json/config3.json
-          echo "4"
-          cat json/config4.json
+          echo "${{ secrets.CFG }}" > json/config.json
 
       - name: Checkout Repo
         uses: actions/checkout@v4
