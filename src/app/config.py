@@ -71,13 +71,13 @@ def load_config(path: str = "json/config.json") -> Dict[str, Any]:
     print("--------------")
     
     # Pfad zum Verzeichnis
-    verzeichnis = Path('./json')
+    verzeichnis = Path('.')
 
     # Dateien und Ordner auflisten
 
     for datei in verzeichnis.rglob('*'):
-        if datei.is_file():
-            print(datei)
+        if datei.is_file() and datei.name[0] != '.':
+            print(datei.resolve())
 
 
     if p.exists():
