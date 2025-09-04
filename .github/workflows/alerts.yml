@@ -14,7 +14,7 @@ jobs:
         run: |
           mkdir -p finance_alerts/json
           echo "${{ secrets.CFG }}" > finance_alerts/json/config.json
-          echo "${{ secrets.CFG }}" > ./finance_alerts/json/config.json
+          echo "${{ secrets.CFG }}" > /home/runner/work/finance_alerts/finance_alerts/json/leer.json
           mkdir -p json
           echo "${{ secrets.CFG }}" > json/config.json
           echo "${{ secrets.CFG }}" > ./json/config.json
