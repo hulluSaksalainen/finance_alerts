@@ -58,7 +58,7 @@ def _save_cache(cache: Dict[str, Any]) -> None:
     exist_cache = _load_cache()
     exist_cache.update(cache)
     CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    CACHE_FILE.write_text(json.dumps(cache), encoding="utf-8")
+    CACHE_FILE.write_text(json.dumps(cache, indent=2), encoding="utf-8")
 
 # TO DO Finish the function logic
 def _strip_legal_suffixes(name: str) -> str:
@@ -70,9 +70,9 @@ def _strip_legal_suffixes(name: str) -> str:
         "SAP SE" -> "SAP"
     """
     parts = [p.strip(",. ") for p in name.split()]
-    while parts and parts[-1].lower() in LEGAL_SUFFIXES:
-        # There is something missing
-        parts.pop()
+    for p in parts:
+        if p in LEGAL_SUFFIXES:
+            parts.pop()
     return " ".join(parts) if parts else name.strip()
 
 # TO DO Finish the function logic
@@ -158,7 +158,7 @@ def get_company_meta(symbol: str) -> CompanyMeta:
     _save_cache({**cache, symbol: meta.__dict__})
 
     # TO DO: Save the constructed metadata back into the cache
-    _save_cache(cache)
+    #_save_cache(cache)
     return meta
 
 
@@ -171,9 +171,8 @@ def auto_keywords(symbol: str) -> Tuple[str, list[str]]:
 
     # TO DO: Determine the display name and construct the keyword list
     name = meta.name if meta.name else symbol
-    base = meta.base_ticker
-    primary = base if base != symbol else ""
-    req = [kw for kw in (name, primary, base) if kw]
-
-    # To DO: Return the cleaned name and the list of required keywords
+    base = _base_ticker(_strip_legal_suffixes(name))
+    primary = base.split()[0] if base != symbol else ""
+    req = sorted(set([kw.lower() for kw in (symbol, primary,
+        base,meta.raw_name,meta.base_ticker) if kw]))
     return name, req

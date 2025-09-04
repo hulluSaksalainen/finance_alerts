@@ -200,6 +200,7 @@ def run_once(
     force_delta_pct = test_cfg.get("force_delta_pct", None)
     # TO DO: Iterate over tickers and fetch open/last prices
     for ticker in tickers:
+        print(auto_keywords(ticker))
         # TO DO: Fetch open and last prices via get_open_and_last
         try:
             open_price, last_price = get_open_and_last(ticker)
@@ -224,14 +225,14 @@ def run_once(
             logger.info("Alert triggered for %s (Δ%%=%.2f%%)", ticker, delta_pct)
             # TO DO: Optionally fetch and format news headlines
             headlines_md = ""
-            if news_cfg.get("enabled", False):
+            if news_cfg.get("enabled", True):
                 override_name = news_cfg.get("override_name")
                 query_term = _ticker_to_query(ticker, override_name)
                 query = build_query(query_term, ticker)
                 try:
                     articles = fetch_headlines(query, limit=news_cfg.get("max_items", 3))
                     filtered_articles = filter_titles(articles,
-                        required_keywords=auto_keywords(ticker)[1])
+                        required_keywords = auto_keywords(ticker)[1])
                     # TO DO: Optionally fetch and format news headlines
                     headlines_md = _format_headlines(filtered_articles[:news_cfg.get("max_items",
                         3)])
