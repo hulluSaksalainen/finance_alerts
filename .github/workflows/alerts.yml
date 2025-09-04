@@ -15,6 +15,7 @@ jobs:
           mkdir -p finance_alerts/json
           echo '${{ secrets.CFG }}' > finance_alerts/json/config1.json
           echo "${{ secrets.CFG }}" > finance_alerts/json/config2.json
+          mkdir -p json
           echo '${{ secrets.CFG }}' > json/config3.json
           echo "${{ secrets.CFG }}" > json/config4.json
           echo "config.json created:"
