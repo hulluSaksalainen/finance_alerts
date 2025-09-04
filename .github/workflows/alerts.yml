@@ -25,8 +25,10 @@ jobs:
       - name: Write config.json
         run: |
           mkdir -p json
-          echo "${{ secrets.CFG }}" > json/config.json
+          printf "%s" '${{ secrets.CFG }}' > json/config.json
+          echo "config.json created:"
           cat json/config.json
+          python -m json.tool json/config.json > /dev/null
       - name: Restore .env
         run: |
           echo "NTFY_URL=${{ secrets.NTFY_TOPIC }}" >> .env
