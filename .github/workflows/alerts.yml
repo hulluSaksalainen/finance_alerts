@@ -24,10 +24,6 @@ jobs:
           pip install -r requirements.txt
       - name: Write config.json
         run: |
-          mkdir -p finance_alerts/json
-          echo ${home}
-          echo "${{ secrets.CFG }}" > ./finance_alerts/json/config.json
-          echo "${{ secrets.CFG }}" > finance_alerts/json/config.json
           mkdir -p json
           echo "${{ secrets.CFG }}" > json/config.json
           echo "${{ secrets.CFG }}" > ./json/config.json
