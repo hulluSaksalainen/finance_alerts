@@ -13,7 +13,7 @@ jobs:
       - name: Write config.json
         run: |
           mkdir -p json
-          echo '${{ secrets.CFG }}' > json/config.json
+          echo '${{ secrets.CFG }}' > json\config.json
 
       - name: Checkout Repo
         uses: actions/checkout@v4
