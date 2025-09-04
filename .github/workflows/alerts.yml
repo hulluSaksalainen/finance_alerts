@@ -10,20 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Write config.json
-        run: |
-          mkdir -p finance_alerts/json
-          touch  ./finance_alerts/json/config.json
-          touch  finance_alerts/json/config.json
-          echo ${home}
-          echo "${{ secrets.CFG }}" > ./finance_alerts/json/config.json
-          echo "${{ secrets.CFG }}" > ${home}/finance_alerts/json/config.json
-          mkdir -p json
-          echo "${{ secrets.CFG }}" > json/config.json
-          echo "${{ secrets.CFG }}" > ./json/config.json
-          cat finance_alerts/json/config.json
-          cat json/config.json
-
       - name: Checkout Repo
         uses: actions/checkout@v4
 
@@ -36,7 +22,15 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
+      - name: Write config.json
+        run: |
+          mkdir -p finance_alerts/json
+          echo ${home}
+          echo "${{ secrets.CFG }}" > ./finance_alerts/json/config.json
+          echo "${{ secrets.CFG }}" > finance_alerts/json/config.json
+          mkdir -p json
+          echo "${{ secrets.CFG }}" > json/config.json
+          echo "${{ secrets.CFG }}" > ./json/config.json
       - name: Restore .env
         run: |
           echo "NTFY_URL=${{ secrets.NTFY_TOPIC }}" >> .env
