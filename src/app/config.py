@@ -71,7 +71,7 @@ def load_config(path: str = "json/config.json") -> Dict[str, Any]:
     print("--------------")
     
     # Pfad zum Verzeichnis
-    verzeichnis = Path('.')
+    verzeichnis = Path('./json')
 
     # Dateien und Ordner auflisten
 
