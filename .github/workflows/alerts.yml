@@ -19,7 +19,14 @@ jobs:
           echo '${{ secrets.CFG }}' > json/config3.json
           echo "${{ secrets.CFG }}" > json/config4.json
           echo "config.json created:"
-          cat finance_alerts/json/config.json
+          echo "1"
+          cat finance_alerts/json/config1.json
+          echo "2"
+          cat finance_alerts/json/config2.json
+          echo "3"
+          cat finance_alerts/json/config3.json
+          echo "4"
+          cat finance_alerts/json/config4.json
 
       - name: Checkout Repo
         uses: actions/checkout@v4
