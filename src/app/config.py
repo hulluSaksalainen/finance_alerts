@@ -74,8 +74,11 @@ def load_config(path: str = "json/config.json") -> Dict[str, Any]:
     verzeichnis = Path('.')
 
     # Dateien und Ordner auflisten
-    for eintrag in verzeichnis.iterdir():
-        print(eintrag.name)
+
+    for datei in verzeichnis.rglob('*'):
+        if datei.is_file():
+            print(datei)
+
 
     if p.exists():
         try:
