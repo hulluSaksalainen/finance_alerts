@@ -39,6 +39,7 @@ jobs:
       - name: Debug working dir
         run: |
           pwd
+          cd json
           ls -R
       - name: Run Alerts
         run: python main.py
