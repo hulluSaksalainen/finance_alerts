@@ -73,6 +73,8 @@ def load_config(path: str = "json/config.json") -> Dict[str, Any]:
             user = json.loads(p.read_text(encoding="utf-8"))
         except Exception as e:
             raise RuntimeError(f"config.json could not be read: {e}") from e
+    else:
+        raise FileNotFoundError(f"Configuration file {path} not found")
     if "news" not in user:
         print("news not in user")
     else:
