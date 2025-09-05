@@ -26,6 +26,9 @@ jobs:
           if [ ! -f json/alert_state.json ]; then
             echo '{}' > json/alert_state.json
             echo "Created empty json/alert_state.json"
+          else
+            echo "else alert existiert"
+            cat json/alert_state.json
           fi
         
       - name: Setup Python
@@ -44,6 +47,7 @@ jobs:
           printf "%s" '${{ secrets.CFG }}' > json/config.json
           echo "config.json created:"
           cat json/config.json
+          echo "alert.json existiert:"
           cat json/alert_state.json
           if [ -f json/alert_state.json ]; then
             echo "alert_state.json exists, content:"
