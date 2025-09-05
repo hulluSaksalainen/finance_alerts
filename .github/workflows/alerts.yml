@@ -19,6 +19,14 @@ jobs:
           name: alert_state
           path: json
         continue-on-error: true
+
+      - name: Ensure alert_state.json exists
+        run: |
+          mkdir -p json
+          if [ ! -f json/alert_state.json ]; then
+            echo '{}' > json/alert_state.json
+            echo "Created empty json/alert_state.json"
+          fi
         
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -36,6 +44,7 @@ jobs:
           printf "%s" '${{ secrets.CFG }}' > json/config.json
           echo "config.json created:"
           cat json/config.json
+          cat json/alert_state.json
           python -m json.tool json/config.json > /dev/null
           
       - name: Restore .env
