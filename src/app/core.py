@@ -217,8 +217,10 @@ def run_once(
             last_price, delta_pct)
         # TO DO: Decide whether to send an alert based on threshold_pct and state
         alert_needed = abs(delta_pct) >= threshold_pct
+        print(alert_needed,"== alert_needed für ",ticker)
         # TO DO: Decide whether to send alerts and prepare notification body
-        already_alerted = state.get(ticker, {}).get("alerted", False)
+        already_alerted = state.get(ticker, {}).get("open_price", 0) == open_price and \
+            state.get(ticker, {}).get("last_price", 0) == last_price
         if alert_needed and not already_alerted:
             logger.info("Alert triggered for %s (Δ%%=%.2f%%)", ticker, delta_pct)
             # TO DO: Optionally fetch and format news headlines
@@ -261,8 +263,9 @@ def run_once(
                 click_url=f"https://finance.yahoo.com/quote/{ticker}",
             )
             # TO DO: persist state via save_state
-            state[ticker] = {"alerted": True, "last_alert_time": dt.datetime.utcnow().isoformat(),
-                "news":news}
+            state[ticker] = {
+                "last_alert_time": str(now_tz(market_hours_cfg.get("tz", "UTC")).isoformat()),
+                "news":news,"open_price":open_price,"last_price":last_price}
             save_state(state_file, state)
         elif not alert_needed and already_alerted:
             logger.info("Resetting alert state for %s (Δ%%=%.2f%%)", ticker, delta_pct)

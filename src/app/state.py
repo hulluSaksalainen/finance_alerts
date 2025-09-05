@@ -37,7 +37,7 @@ def save_state(path: Path, state: Dict[str, str]) -> None:
     """
     # TO DO: Den Zustand als JSON (UTF-8) in die Datei schreiben
     try:
-        content = json.dumps(state, indent=2)
+        content = json.dumps(state, indent=2,default=str)
         path.write_text(content, encoding="utf-8")
         logger.debug("Saved state to %s: %s", path, state)
     # TO DO: Einen Debug-Log mit dem gespeicherten Zustand ausgeben
