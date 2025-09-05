@@ -24,7 +24,10 @@ def notify_ntfy(
         logger.info("Dry run: Notification to %s at %s | Title: %s | Message: %s",
             mask_secret(topic), server, title, message)
         return
-
+    elif title.find("katinka") != -1:
+        logger.info("Dry run: Notification to %s at %s | Title: %s | Message: %s",
+            mask_secret(topic), server, title, message)
+        return
     url = f"{server.rstrip('/')}/{topic}"
     headers = {
         "Title": title,

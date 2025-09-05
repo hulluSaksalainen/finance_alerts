@@ -7,12 +7,11 @@ from typing import Dict, List, Any
 from urllib.parse import urlparse, parse_qs
 import requests
 
-from .market import get_open_and_last
 from .ntfy import notify_ntfy
 from .state import load_state, save_state
 from .company import auto_keywords
 from .news import fetch_headlines, build_query, filter_titles
-
+from .market import get_open_and_last
 logger = logging.getLogger("stock-alerts")
 
 def _ticker_to_query(ticker: str, override_name: str | None = None) -> str:
@@ -81,8 +80,6 @@ def _extract_original_url(link: str, *, resolve_redirects: bool = True,
     except requests.RequestException as e:
         logger.debug("Failed to resolve redirects for %s: %s", link, e)
         return link
-
-
 
 def _domain(url: str) -> str:
     """
@@ -196,6 +193,7 @@ def run_once(
             return
     # TO DO: Load alert state from state_file
     state = load_state(state_file)
+    news=list()
     dry_run = test_cfg.get("dry_run", False)
     force_delta_pct = test_cfg.get("force_delta_pct", None)
     # TO DO: Iterate over tickers and fetch open/last prices
@@ -230,7 +228,8 @@ def run_once(
                 query_term = _ticker_to_query(ticker, override_name)
                 query = build_query(query_term, ticker)
                 try:
-                    articles = fetch_headlines(query, limit=news_cfg.get("max_items", 3))
+                    articles, news = fetch_headlines(query, limit=news_cfg.get("max_items", 3),
+                        news=state[ticker].get("news"))
                     filtered_articles = filter_titles(articles,
                         required_keywords = auto_keywords(ticker)[1])
                     # TO DO: Optionally fetch and format news headlines
@@ -262,7 +261,8 @@ def run_once(
                 click_url=f"https://finance.yahoo.com/quote/{ticker}",
             )
             # TO DO: persist state via save_state
-            state[ticker] = {"alerted": True, "last_alert_time": dt.datetime.utcnow().isoformat()}
+            state[ticker] = {"alerted": True, "last_alert_time": dt.datetime.utcnow().isoformat(),
+                "news":news}
             save_state(state_file, state)
         elif not alert_needed and already_alerted:
             logger.info("Resetting alert state for %s (Δ%%=%.2f%%)", ticker, delta_pct)

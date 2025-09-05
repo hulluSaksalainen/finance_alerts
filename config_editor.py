@@ -40,9 +40,23 @@ def main():
     st.title("⚙️ Stock Notifier Config Editor")
 
     config = load_config()
+        # --- Session State für Arbeitskopie ---
+    if "config" not in st.session_state:
+        st.session_state.config = config
+    # --- Datei-Upload ---
+    uploaded_file = st.file_uploader("📂 Lade eine config.json hoch", type=["json"])
+    if uploaded_file is not None:
+        try:
+            uploaded_config = json.load(uploaded_file)
+            st.session_state.config = uploaded_config   # nur in Session State laden
+            st.success("Hochgeladene Config übernommen (noch nicht gespeichert).")
+        except (json.JSONDecodeError, UnicodeDecodeError) as e:
+            st.error(f"Fehler beim Einlesen: {e}")
+
+    config = st.session_state.config  # Arbeitskopie
 
     # --- Ticker ---
-    with st.expander("📈 Ticker", expanded=True):
+    with st.expander("📈 Ticker", expanded=False):
         tickers = st.text_area("Zu überwachende Ticker (durch Komma getrennt)",
             value=",".join(config.get("tickers", [])))
         config["tickers"] = [t.strip().upper() for t in tickers.split(",") if t.strip()]
@@ -56,7 +70,7 @@ def main():
 
 
     # --- NTFY ---
-    with st.expander("📨 ntfy-Einstellungen", expanded=True):
+    with st.expander("📨 ntfy-Einstellungen", expanded=False):
         config["ntfy"]["server"] = st.text_input("Server-URL", value=config["ntfy"].get("server",
             "https://ntfy.sh"))
         config["ntfy"]["topic"] = st.text_input("Topic",
@@ -73,7 +87,7 @@ def main():
         )
 
     # --- Logging ---
-    with st.expander("📝 Logging", expanded=True):
+    with st.expander("📝 Logging", expanded=False):
         config["log"]["level"] = st.selectbox(
             "Log-Level",
             ["DEBUG", "INFO", "WARNING", "ERROR"],
@@ -96,7 +110,7 @@ def main():
                 value=config["log"].get("file_backup_count", 3))
 
     # --- News ---
-    with st.expander("📰 News-Einstellungen", expanded=True):
+    with st.expander("📰 News-Einstellungen", expanded=False):
         config["news"]["enabled"] = st.radio(
             "Activate News-Alerts",
             options=[True, False],
@@ -122,7 +136,7 @@ def main():
                 value=config["news"].get("limit", 5))
 
     # --- Market Times ---
-    with st.expander("⏰ Marktzeiten", expanded=True):
+    with st.expander("⏰ Marktzeiten", expanded=False):
         col1, col2 = st.columns(2)
         config["market_hours"]["enabled"] = st.radio(
             "Only during market hours",
@@ -151,6 +165,14 @@ def main():
 
     # --- Vorschau ---
     st.subheader("📜 Vorschau")
+     # --- Download-Button ---
+    compact_json = json.dumps(config, separators=(",", ":"))
+    st.download_button(
+        label="📥 Vorschau downloaden als config.json",
+        data=compact_json,
+        file_name="config.json",
+        mime="application/json"
+    )
     st.json(config)
 
 

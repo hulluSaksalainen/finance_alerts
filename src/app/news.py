@@ -48,14 +48,17 @@ def _google_news_rss_url(query: str, lang: str = "de", country: str = "DE") -> s
 def fetch_headlines(
     query: str,
     limit: int = 2,
+    news: List = None,
     lookback_hours: int = 12,
     lang: str = "de",
     country: str = "DE",
-) -> List[Dict[str, str]]:
+) -> tuple[list[dict[str, str]], list]:
     """
     Fetch latest headlines from Google News RSS for a given query.
     """
     # TO DO: Build the RSS URL via _google_news_rss_url and parse it with feedparser
+    if news is None:
+        news = []
     url = _google_news_rss_url(query, lang=lang, country=country)
     feed = feedparser.parse(url)
     entries = feed.entries
@@ -72,6 +75,10 @@ def fetch_headlines(
             continue
         title = entry.get("title", "No title")
         link = entry.get("link", "")
+        if (link,pub_dt) in news:
+            continue
+        else:
+            news.append((link,pub_dt))
         source = entry.get("source", {}).get("title", "Unknown source")
         results.append({
             "title": title,
@@ -82,4 +89,7 @@ def fetch_headlines(
         # TO DO: Stop after collecting 'limit' items
         if len(results) >= limit:
             break
-    return results
+    for (l,p) in news:
+        if (now - p).total_seconds() / 3600 > lookback_hours:
+            news.remove((l,p))
+    return results, news
