@@ -36,6 +36,7 @@ jobs:
           printf "%s" '${{ secrets.CFG }}' > json/config.json
           echo "config.json created:"
           cat json/config.json
+          cat json/alert_state.json
           python -m json.tool json/config.json > /dev/null
           
       - name: Restore .env
