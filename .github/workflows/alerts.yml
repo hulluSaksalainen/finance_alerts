@@ -12,7 +12,14 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-
+        
+      - name: Restore alert_state.json
+        uses: actions/download-artifact@v4
+        with:
+          name: alert_state
+          path: json
+        continue-on-error: true
+        
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -22,18 +29,26 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          
       - name: Write config.json
         run: |
           mkdir -p json
-          echo "${{ secrets.CFG }}" > json/config.json
-          echo "${{ secrets.CFG }}" > ./json/config.json
+          printf "%s" '${{ secrets.CFG }}' > json/config.json
+          echo "config.json created:"
+          cat json/config.json
+          python -m json.tool json/config.json > /dev/null
+          
       - name: Restore .env
         run: |
           echo "NTFY_URL=${{ secrets.NTFY_TOPIC }}" >> .env
           echo "API_KEY=${{ secrets.LOG_LEVEL }}" >> .env
-      - name: Debug working dir
-        run: |
-          pwd
-          ls -R
+          
       - name: Run Alerts
         run: python main.py
+        
+      - name: Save alert_state.json
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alert_state
+          path: json/alert_state.json
