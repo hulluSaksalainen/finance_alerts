@@ -11,8 +11,8 @@ def build_query(name: str, ticker: str) -> str:
     Build a Google News search query for a company.
     """
     # TO DO: Return a query combining company name, ticker, and finance keywords
-    query_string = f"""'{name}' OR '{ticker}'
-        (stock OR stocks OR share OR shares OR market OR markets OR finance OR financial)"""
+    query_string = f"""'{name}' OR '{ticker}' AND
+        (stock OR Aktien OR share OR Markt OR market OR markets OR finance OR Börse)"""
     return query_string
 
 def filter_titles(items: List[Dict[str, str]],
@@ -25,7 +25,7 @@ def filter_titles(items: List[Dict[str, str]],
     if not required_keywords:
         return items
     # TO DO: Otherwise, keep only items whose title contains any keyword (case-insensitive)
-    lower_keywords = [kw.lower() for kw in required_keywords]
+    lower_keywords = [kw.lower() for kw in required_keywords if len(kw) > 1]
     filtered = [] # type: List[Dict[str, str]]
     for item in items:
         title = item.get("title", "").lower()
@@ -63,7 +63,7 @@ def fetch_headlines(
     feed = feedparser.parse(url)
     entries = feed.entries
     results = []
-    now = dt.datetime.utcnow()
+    now = dt.datetime.now()
     for entry in entries:
         published = entry.get("published_parsed")
         if not published:
@@ -90,6 +90,10 @@ def fetch_headlines(
         if len(results) >= limit:
             break
     for (l,p) in news:
-        if (now - p).total_seconds() / 3600 > lookback_hours:
+        if isinstance(p,str):
+            p_dt=dt.datetime.strptime(p,"%Y-%m-%d %H:%M:%S")
+        else:
+            p_dt=p
+        if (now - p_dt).total_seconds() / 3600 > 300:
             news.remove((l,p))
     return results, news

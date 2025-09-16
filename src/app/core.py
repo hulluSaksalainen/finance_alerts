@@ -12,6 +12,7 @@ from .state import load_state, save_state
 from .company import auto_keywords
 from .news import fetch_headlines, build_query, filter_titles
 from .market import get_open_and_last
+from .ml_daily import run_daily_for_ticker
 logger = logging.getLogger("stock-alerts")
 
 def _ticker_to_query(ticker: str, override_name: str | None = None) -> str:
@@ -198,7 +199,6 @@ def run_once(
     force_delta_pct = test_cfg.get("force_delta_pct", None)
     # TO DO: Iterate over tickers and fetch open/last prices
     for ticker in tickers:
-        print(auto_keywords(ticker))
         # TO DO: Fetch open and last prices via get_open_and_last
         try:
             open_price, last_price = get_open_and_last(ticker)
@@ -211,13 +211,11 @@ def run_once(
         # TO DO: Compute Δ% and apply test override if provided
         delta_pct = ((last_price - open_price) / open_price * 100) if open_price != 0 else 0.0
         if force_delta_pct is not None:
-            delta_pct = force_delta_pct
-            logger.info("Test mode: forcing Δ%% for %s to %.2f%%", ticker, delta_pct)
+            logger.info("Test mode: forcing Δ%% for %s to %.2f%%", ticker, force_delta_pct)
         logger.info("Ticker %s: open=%.4f last=%.4f Δ%%=%.2f%%", ticker, open_price,
             last_price, delta_pct)
         # TO DO: Decide whether to send an alert based on threshold_pct and state
         alert_needed = abs(delta_pct) >= threshold_pct
-        print(alert_needed,"== alert_needed für ",ticker)
         # TO DO: Decide whether to send alerts and prepare notification body
         already_alerted = state.get(ticker, {}).get("open_price", 0) == open_price and \
             state.get(ticker, {}).get("last_price", 0) == last_price
@@ -226,14 +224,14 @@ def run_once(
             # TO DO: Optionally fetch and format news headlines
             headlines_md = ""
             if news_cfg.get("enabled", True):
-                override_name = news_cfg.get("override_name")
-                query_term = _ticker_to_query(ticker, override_name)
+                name,required_keywords = auto_keywords(ticker)
+                query_term = _ticker_to_query(ticker, name)
                 query = build_query(query_term, ticker)
                 try:
                     articles, news = fetch_headlines(query, limit=news_cfg.get("max_items", 3),
                         news=state[ticker].get("news"))
                     filtered_articles = filter_titles(articles,
-                        required_keywords = auto_keywords(ticker)[1])
+                        required_keywords = required_keywords)
                     # TO DO: Optionally fetch and format news headlines
                     headlines_md = _format_headlines(filtered_articles[:news_cfg.get("max_items",
                         3)])
@@ -251,7 +249,22 @@ def run_once(
             ]
             if headlines_md:
                 message_lines.append("\n**News Headlines:**\n" + headlines_md)
-            message = "\n".join(message_lines)
+            #####
+            res = run_daily_for_ticker(ticker, model_kind="rf",
+                streamlit_base_url="https://deine-streamlit-url/info_zu_ticker")
+            if res.prediction_rf == 1:
+                prognose_text = "📈 Steigt"
+            else:
+                prognose_text = "📉 Fällt"
+
+            alert_text = (
+                f"📊 {res.ticker} – ML Prognose\n"
+                f"Accuracy: {res.accuracy_rf:.2f} (auf den letzten Monaten)\n"
+                f"Prognose für nächsten Handelstag: {prognose_text}\n"
+                f"🔗 Details & Bilder: {res.link_streamlit}\n"
+            )
+            #####
+            message = "\n".join(message_lines).join("\n") + "\n\n" + alert_text
             # TO DO: Send notification via notify_ntfy
             notify_ntfy(
                 server=ntfy_server,

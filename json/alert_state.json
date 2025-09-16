@@ -1,45 +1,95 @@
 {
   "AAPL": {
-    "last_alert_time": "2025-09-05 10:43:08.820267+02:00",
-    "news": [],
-    "open_price": 238.4499969482422,
-    "last_price": 239.7100067138672
-  },
-  "O": {
-    "last_alert_time": "2025-09-05T10:48:48.647510+02:00",
+    "last_alert_time": "2025-09-05T17:18:33.089009+02:00",
     "news": [
       [
-        "https://news.google.com/rss/articles/CBMiswFBVV95cUxNU3VRVE51LTBXYXk5NzUyOHlsZ2kzQXp4UVVla2NuVjFtNXpBTEJpeEY3cUNpT2F5SzJOWk5ZLWl5MXpHZ2x0T3RGNWkxNUgwQW1wZ0h2Q0hQZGt2QkZCcDdQQTNTbVRVR2o0amgtdEFwNlhjTFBSa01NN2tSY3V0ZV9oWF85ckl0emJPbEJ0TlVvZDhNSTJJb0xwWUFBaXR5UDJsREZ4TlhMYjV6bGR5RDlORQ?oc=5",
-        "2025-09-05 05:10:00"
+        "https://news.google.com/rss/articles/CBMiogFBVV95cUxOdXFGVUJnTU56amVvRVBUYUczYTM3MGVCUjVkd0UxblMtS0ZjVnZnWXJTNHZpamIzcTBZaEs2VGhJWFk2RWV3cDczSnhDM2xLVDZhcnBLRTQ0Y3YtOHZGcXRqTE10dWZoYjhhQXptMjB6LUJ4eEpNSjJ6YnpyWEJmWmRVcnRSUG5NUjg2OHVqeE80azRDbHlmbTdtbWRNZHNOdUHSAacBQVVfeXFMUEd4MXN6S19GMjdhdWxtR25EemhJaWQ4dHdlX0pIS2lxMDliSVBuZ08wdHhRdFljdnVqeGNtbC0tcVBrdmU3M0EwSjh3eGtfYjc5ZmJaUk5tOXdRMDRpbXo5dlpVNWVoUm01SWNGVVVyT2l2YVQ3Y3g0VmxrWXBCUndLNkdYamEtTVNHb05KZjRoM1UwMEZuN1JISEJXZHpoRlljTmxOLWs?oc=5",
+        "2025-09-05 11:21:08"
       ],
       [
-        "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPWlpNNjFaSy1hU0dZT3FSZkVpeEI0M2hHaFJ1SF9tSVlieTBfNjFGQTdDTjdjT0Nwc3pUSTJkSE1mckRRZ3h3LWZzcWJvYUZDVDRPTkxBeWlsZk1WdnpoZkpvOHk4MXJZdXJfeklvczBPbzFsRDM5MDM2dzlJZXYtUmtkQkZOU1M5dVY5Zzc2R0VEbmhNLUlKaUc4RHJCcXB6RHlOUkw2YW12ZjhLa2NuUEhZckdfRE9xeWpJSWlFY0xRR2YyajFybm8xN1J6WUo4M2ZJb3pUNA?oc=5",
-        "2025-09-05 02:50:20"
+        "https://news.google.com/rss/articles/CBMilwFBVV95cUxOWl9PU0wxQy1ERTlBSkNzNEJMeTA5dHJldEhHOFRSLXlmNEIwbHVwU2JtRzJfLXZhRGVCR2NrOVNaTUpaaUhEQkJJOV9ld3haZVFnaC1IWndIUzM2cjVENE83OEFEb0RocV9WN3JEc3NCQVFmZ2RtMmtzMkN6WHNnZ0pVQmx3RHNHQlJfb1dLVlY5ZDRwOGhj?oc=5",
+        "2025-09-05 10:54:13"
       ],
       [
-        "https://news.google.com/rss/articles/CBMiowFBVV95cUxObDNhdmM4dVFaM3RiSFBHWTJXRFBlSmc4bkpVX1g3MTlCZ3RzcGNzVFdYQmM0U3dZSDlGZ2F5MF90VERoQ3U5MGtmbGFBXzhibVdtTXpnZ2pPV0U5VEpUeUY2dlpzYjM5aVJPYWxYcnBfaWVtT1RnMGcyVDZLMXdUMUhEZXg2ZHlyRmtNemE3U1pUd2JXTWdCV2V4S3laWi1qSHBZ?oc=5",
-        "2025-09-05 04:49:43"
+        "https://news.google.com/rss/articles/CBMikgJBVV95cUxPLU1DQXVqTUJiZzUwYnBlNHJRMklCazNmY1ZURHRaajBSeVRSR01KUk9vNkhtbTZLbk85cFBRM0RHTnp3cUp1LTA3U0dUV1JZWW82M1dUeHFHX3J0NnU0OWlUcGw0VS1xeGdNX1pBWlN6OXZrSHNwd1BJVGdCeTJOd0RNWFNpaGFjNk52Nk9iMXJEQUdGdHhhWkhuQVpubFIxdnJTbDg2Z3VtRXdxWW5OOW9iRDk3bGdfckQya2tTUjBLcWJkd3NWOW1yNnRVaGpMMjAtdFlpZmt3QjlDbE9jelZpazdYWXVFWUpmQmhKd3RMOEJEcmhQYXpSNllDdHZwNE11MUh0djU3LW9MWlRDWVhn?oc=5",
+        "2025-09-05 15:08:00"
       ]
     ],
-    "open_price": 58.06999969482422,
-    "last_price": 58.28499984741211
+    "open_price": 239.99000549316406,
+    "last_price": 239.60000610351562,
+    "ml": {
+      "2025-09-05": {
+        "model_rf": "RandomForest",
+        "accuracy_rf": 0.49514563106796117,
+        "report_rf": "              precision    recall  f1-score   support\n\n           0      0.456     0.495     0.475        95\n           1      0.534     0.495     0.514       111\n\n    accuracy                          0.495       206\n   macro avg      0.495     0.495     0.494       206\nweighted avg      0.498     0.495     0.496       206\n",
+        "model_1": "LogisticRegression",
+        "accuracy_1": 0.49514563106796117,
+        "report_1": "              precision    recall  f1-score   support\n\n           0      0.456     0.495     0.475        95\n           1      0.534     0.495     0.514       111\n\n    accuracy                          0.495       206\n   macro avg      0.495     0.495     0.494       206\nweighted avg      0.498     0.495     0.496       206\n",
+        "pred_next": 0,
+        "img_dir": "src/img/AAPL/2025-09-05",
+        "imgs": [
+          "pic_rf1.png",
+          "pic_rf2.png",
+          "pic_11.png",
+          "pic_12.png"
+        ]
+      }
+    }
+  },
+  "O": {
+    "last_alert_time": "2025-09-05T17:31:07.977897+02:00",
+    "news": [],
+    "open_price": 58.45000076293945,
+    "last_price": 58.98080062866211
   },
   "WPY.F": {
-    "last_alert_time": "2025-09-05T10:48:49.834400+02:00",
-    "news": [],
+    "last_alert_time": "2025-09-05T17:18:40.921408+02:00",
+    "news": [
+      [
+        "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPVVg3RTdqMGx6eGVEY2JIUHdWQVZ6RU9KeEkweFNETk5xU1JCVERYX0RBSC13a2Jjb2RkejRacXNNYTlyTTB2cTZvMnRpdHZ4S3NDcFZKUmFIeGJGbG9VRjZKVVJ3ZXBmN2RDUWk3R3VQbmF3VVFyUWJHVHlvQkc0eG54UDVIUGNvdllIREtHN1VsTzVROTVvbDZRRVg3VzA5aUlWR2VXNDdVZw?oc=5",
+        "2025-09-05 06:02:00"
+      ]
+    ],
     "open_price": 57.099998474121094,
-    "last_price": 57.099998474121094
+    "last_price": 57.5
   },
   "QDVX.DE": {
-    "last_alert_time": "2025-09-05T10:48:51.068115+02:00",
+    "last_alert_time": "2025-09-05T17:26:51.646493+02:00",
     "news": [],
     "open_price": 6.285999774932861,
-    "last_price": 6.289000034332275
+    "last_price": 6.260000228881836
   },
   "RHM.DE": {
-    "last_alert_time": "2025-09-05T10:52:30.651187+02:00",
-    "news": [],
+    "last_alert_time": "2025-09-05T17:31:03.973979+02:00",
+    "news": [
+      [
+        "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQUzRGNTZnTUdTTThjS3RxaHA0c2FOSDItMTJlUk1HR0lLSXZpMnMzblhGUWQwZGtNLWNySDdsdllWRWJxbW94b09Xa2ZMaWZibzRoX05wTnJJRXNpOFhTV0RZUGRselFLVVhaaWY1ZkRral9lMC1JakU1MzlRTlJkNGdfSzgzUGNjX2c3dDNOSGJHU3J0OG5HU2lBOF81WGlCOGlicnlUa1V0elFKSE5zNjJ0ZHlvam1WVC1lOGdoMGVENWJSQXhjdDBmWDlSd1dReEUyY0t0Ukh3cUJKVmtwUm1samFnWmxXbW1FYg?oc=5",
+        "2025-09-05 14:10:00"
+      ],
+      [
+        "https://news.google.com/rss/articles/CBMilwFBVV95cUxOY2JSWUVZbU9jd19Pb0Fubi0yUUh2SzcwVlEyUFFsWVJ3eFA4bGVQbk5DX1I0cXFod3FGek1YMnVReGlJemxLc2FXYTVtcTFJQnJPWE5BRDNQS0NRNlNBbVpkUkxZRDlTYWN2SUgxUGJSc0Fkdl9HeDZGNG1RSnZ6QzdNdjBDcDdhWWc5WF9CTkhaeHpXNzdz?oc=5",
+        "2025-09-05 14:12:11"
+      ]
+    ],
     "open_price": 1730.0,
-    "last_price": 1754.5
+    "last_price": 1737.0,
+    "ml": {
+      "2025-09-05": {
+        "model_rf": "RandomForest",
+        "accuracy_rf": 0.49282296650717705,
+        "report_rf": "              precision    recall  f1-score   support\n\n           0      0.469     0.968     0.632        94\n           1      0.800     0.104     0.185       115\n\n    accuracy                          0.493       209\n   macro avg      0.635     0.536     0.408       209\nweighted avg      0.651     0.493     0.386       209\n",
+        "model_1": "LogisticRegression",
+        "accuracy_1": 0.49282296650717705,
+        "report_1": "              precision    recall  f1-score   support\n\n           0      0.469     0.968     0.632        94\n           1      0.800     0.104     0.185       115\n\n    accuracy                          0.493       209\n   macro avg      0.635     0.536     0.408       209\nweighted avg      0.651     0.493     0.386       209\n",
+        "pred_next": 0,
+        "img_dir": "src/img/RHM.DE/2025-09-05",
+        "imgs": [
+          "pic_rf1.png",
+          "pic_rf2.png",
+          "pic_11.png",
+          "pic_12.png"
+        ]
+      }
+    }
   }
 }
